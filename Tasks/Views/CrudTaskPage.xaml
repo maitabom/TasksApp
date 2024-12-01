@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Tasks.Views.CrudTaskPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="CrudTaskPage">
+    <Grid>
+        <BoxView
+            HeightRequest="5"
+            VerticalOptions="Start"
+            Color="{StaticResource Black}" />
+        <VerticalStackLayout Padding="15">
+
+            <Button HorizontalOptions="End" Text="X" />
+            <Entry Placeholder="Título da Tarefa" />
+            <Editor Placeholder="Descrição" />
+            <DatePicker />
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Etapas (subtarefas)" VerticalOptions="Center" />
+                <Button
+                    HorizontalOptions="EndAndExpand"
+                    Text="+"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+            <Grid ColumnDefinitions="30, *, 30">
+                <CheckBox VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    Text="Etapa Teste"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="2"
+                    Text="Lixo"
+                    VerticalOptions="Center" />
+            </Grid>
+        </VerticalStackLayout>
+        <Button
+            Margin="15"
+            HorizontalOptions="Center"
+            Text="Salvar"
+            VerticalOptions="End" />
+    </Grid>
+</ContentPage>

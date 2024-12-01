@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Tasks.Views.StartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="StartPage"
+    NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="70, *">
+        <Entry Margin="20,20,20,0" Placeholder="Buscar..." />
+        <Label
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            Text="O que deseja fazer?"
+            TextColor="{StaticResource Gray400}"
+            VerticalOptions="Center" />
+        <Button
+            x:Name="btnAdicionar"
+            Grid.Row="1"
+            Margin="15"
+            Clicked="btnAdicionar_Clicked"
+            HorizontalOptions="Center"
+            Text="Adicionar Tarefa"
+            VerticalOptions="End" />
+    </Grid>
+</ContentPage>
