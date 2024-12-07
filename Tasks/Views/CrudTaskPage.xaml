@@ -11,7 +11,11 @@
             Color="{StaticResource Black}" />
         <VerticalStackLayout Padding="15">
 
-            <Button HorizontalOptions="End" Text="X" />
+            <Button
+                x:Name="btnClose"
+                Clicked="btnClose_Clicked"
+                HorizontalOptions="End"
+                Text="X" />
             <Entry Placeholder="Título da Tarefa" />
             <Editor Placeholder="Descrição" />
             <DatePicker />
@@ -19,6 +23,8 @@
             <StackLayout Orientation="Horizontal">
                 <Label Text="Etapas (subtarefas)" VerticalOptions="Center" />
                 <Button
+                    x:Name="btnAddSubtask"
+                    Clicked="btnAddSubtask_Clicked"
                     HorizontalOptions="EndAndExpand"
                     Text="+"
                     VerticalOptions="Center" />
@@ -37,7 +43,9 @@
             </Grid>
         </VerticalStackLayout>
         <Button
+            x:Name="btnSalvar"
             Margin="15"
+            Clicked="btnSalvar_Clicked"
             HorizontalOptions="Center"
             Text="Salvar"
             VerticalOptions="End" />
