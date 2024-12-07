@@ -4,4 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Tasks.WinUI"
     xmlns:maui="using:Microsoft.Maui"
-    RequestedTheme="Light" />
+    RequestedTheme="Light">
+    <maui:MauiWinUIApplication.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </maui:MauiWinUIApplication.Resources>
+</maui:MauiWinUIApplication>
