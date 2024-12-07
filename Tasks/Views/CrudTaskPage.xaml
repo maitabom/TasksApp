@@ -9,23 +9,34 @@
             HeightRequest="5"
             VerticalOptions="Start"
             Color="{StaticResource Black}" />
-        <VerticalStackLayout Padding="15">
-
+        <VerticalStackLayout Padding="15" Spacing="10">
             <Button
                 x:Name="btnClose"
+                Padding="0"
                 Clicked="btnClose_Clicked"
                 HorizontalOptions="End"
+                MaximumWidthRequest="30"
+                MinimumHeightRequest="30"
                 Text="X" />
-            <Entry Placeholder="Título da Tarefa" />
-            <Editor Placeholder="Descrição" />
-            <DatePicker />
+            <Border StrokeShape="RoundRectangle 10">
+                <Entry Placeholder="Título da Tarefa" />
+            </Border>
+            <Border StrokeShape="RoundRectangle 10">
+                <Editor HeightRequest="150" Placeholder="Descrição" />
+            </Border>
+            <Border StrokeShape="RoundRectangle 10">
+                <DatePicker />
+            </Border>
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Etapas (subtarefas)" VerticalOptions="Center" />
                 <Button
                     x:Name="btnAddSubtask"
+                    Padding="0"
                     Clicked="btnAddSubtask_Clicked"
                     HorizontalOptions="EndAndExpand"
+                    MaximumWidthRequest="30"
+                    MinimumHeightRequest="30"
                     Text="+"
                     VerticalOptions="Center" />
             </StackLayout>
