@@ -25,7 +25,7 @@
                 <Editor HeightRequest="150" Placeholder="Descrição" />
             </Border>
             <Border StrokeShape="RoundRectangle 10">
-                <DatePicker />
+                <DatePicker x:Name="dpTaskDate" />
             </Border>
 
             <StackLayout Orientation="Horizontal">

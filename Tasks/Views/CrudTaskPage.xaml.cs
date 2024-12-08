@@ -21,4 +21,10 @@ public partial class CrudTaskPage : ContentPage
     {
         var stepName = await DisplayPromptAsync("Etapa (Subtarefa)", "Digite o nome da etapa (subtarefa)", "Adicionar", "Cancelar");
     }
+
+    protected override void OnSizeAllocated(double width, double height)
+    {
+        base.OnSizeAllocated(width, height);
+        dpTaskDate.WidthRequest = width - 30;
+    }
 }
