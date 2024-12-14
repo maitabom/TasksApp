@@ -13,5 +13,7 @@ public class Tarefa
     public string Descricao { get; set; } = String.Empty;
     public DateTime DataPrevisao { get; set; }
     public bool Concluido { get; set; }
+    public DateTime Criado { get; set; }
+    public DateTime Atualizado { get; set; }
     public List<Subtarefa> Subtarefas { get; set; } = new List<Subtarefa>();
 }
