@@ -8,6 +8,11 @@ public class AppTasksContext : DbContext
     public DbSet<Tarefa> Tarefas { get; set; }
     public DbSet<Subtarefa> Subtarefas { get; set; }
 
+    public AppTasksContext()
+    {
+        Database.Migrate();
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
@@ -16,6 +21,6 @@ public class AppTasksContext : DbContext
         var databaseName = "apptask.db";
         var databasePath = Path.Combine(folderPath, databaseName);
         
-        optionsBuilder.UseSqlite(databasePath);
+        optionsBuilder.UseSqlite($"Filename={databasePath}");
     }
 }

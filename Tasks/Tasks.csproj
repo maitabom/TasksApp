@@ -64,6 +64,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Tasks.DAO\Tasks.DAO.csproj" />
+	  <ProjectReference Include="..\Tasks.Model\Tasks.Model.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\CrudTaskPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

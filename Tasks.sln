@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.Model", "Tasks.Model\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.DAO", "Tasks.DAO\Tasks.DAO.csproj", "{0B3311D4-B2A9-4857-A2AC-97AE26C33DB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.DAO.Migration.Runtime", "Tasks.DAO.Migration.Runtime\Tasks.DAO.Migration.Runtime.csproj", "{9617467A-74E2-44FF-8675-D3486853EC4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{0B3311D4-B2A9-4857-A2AC-97AE26C33DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B3311D4-B2A9-4857-A2AC-97AE26C33DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B3311D4-B2A9-4857-A2AC-97AE26C33DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9617467A-74E2-44FF-8675-D3486853EC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9617467A-74E2-44FF-8675-D3486853EC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9617467A-74E2-44FF-8675-D3486853EC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9617467A-74E2-44FF-8675-D3486853EC4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
