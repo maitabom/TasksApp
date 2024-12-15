@@ -8,13 +8,14 @@
     <Grid RowDefinitions="70, *">
 
         <Border
+            x:Name="bdSearch"
             Margin="20,20,20,0"
             BackgroundColor="#F7F7F7"
             HeightRequest="50"
             StrokeShape="RoundRectangle 25"
             StrokeThickness="0">
             <Border.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                <TapGestureRecognizer Tapped="bdSearch_Tapped" />
             </Border.GestureRecognizers>
             <StackLayout Orientation="Horizontal">
                 <Image
@@ -30,7 +31,38 @@
             </StackLayout>
         </Border>
 
+        <CollectionView x:Name="cvTasks" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10,5" ColumnDefinitions="70, *, 70">
+                        <CheckBox
+                            x:Name="chkTarefaConcluida"
+                            Grid.Column="0"
+                            HorizontalOptions="Center">
+                            <CheckBox.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="chkTarefaConcluida_Tapped" />
+                            </CheckBox.GestureRecognizers>
+                        </CheckBox>
+                        <StackLayout Grid.Column="1">
+                            <Label FontAttributes="Bold" Text="{Binding Name}" />
+                            <Label Text="{Binding DataPrevisao}" />
+                        </StackLayout>
+                        <Image
+                            x:Name="imgTrash"
+                            Grid.Column="2"
+                            Source="trash.svg"
+                            WidthRequest="25">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="imgTrash_Tapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
         <Label
+            x:Name="lblEmptyTasks"
             Grid.Row="1"
             HorizontalOptions="Center"
             Text="O que deseja fazer?"

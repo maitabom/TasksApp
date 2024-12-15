@@ -41,7 +41,7 @@ public class TarefaRepository : ITarefaRepository
 
     public IList<Tarefa> GetAll()
     {
-        return _context.Tarefas.ToList();
+        return _context.Tarefas.OrderByDescending(t => t.DataPrevisao).ToList();
     }
 
     public void Insert(Tarefa tarefa)
