@@ -1,41 +1,58 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tasks.DAO;
 using Tasks.Model;
 
 namespace Tasks.Repositories;
 
 public class TarefaRepository : ITarefaRepository
 {
-    public Task Delete(int id)
+    private AppTasksContext _context;
+
+    public TarefaRepository()
     {
-        throw new NotImplementedException();
+        _context = new AppTasksContext();
+    }
+
+    public void Delete(int id)
+    {
+        var pivot = Get(id);
+
+        if (pivot != null)
+        {
+            Delete(pivot);
+        }
     }
 
     public void Delete(Tarefa tarefa)
     {
-        throw new NotImplementedException();
+        _context.Tarefas.Remove(tarefa);
+        _context.SaveChanges();
     }
 
-    public Tarefa Get(int id)
+    public Tarefa? Get(int id)
     {
-        throw new NotImplementedException();
+        return _context.Tarefas.Include(s => s.Subtarefas).FirstOrDefault(t => t.Id.Equals(id));
     }
 
     public IList<Tarefa> GetAll()
     {
-        throw new NotImplementedException();
+        return _context.Tarefas.ToList();
     }
 
     public void Insert(Tarefa tarefa)
     {
-        throw new NotImplementedException();
+        _context.Tarefas.Add(tarefa);
+        _context.SaveChanges();
     }
 
     public void Update(Tarefa tarefa)
     {
-        throw new NotImplementedException();
+        _context.Tarefas.Update(tarefa);
+        _context.SaveChanges();
     }
 }

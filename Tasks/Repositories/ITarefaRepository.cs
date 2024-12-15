@@ -10,9 +10,9 @@ namespace Tasks.Repositories;
 public interface ITarefaRepository
 {
     IList<Tarefa> GetAll();
-    Tarefa Get(int id);
+    Tarefa? Get(int id);
     void Insert(Tarefa tarefa);
     void Update(Tarefa tarefa);
-    Task Delete(int id);
+    void Delete(int id);
     void Delete(Tarefa tarefa);
 }
