@@ -49,4 +49,13 @@ public partial class CrudTaskPage : ContentPage
             Tarefa.Subtarefas.Remove(marcado);
         }
     }
+
+    private void GetFormData()
+    {
+        Tarefa.Nome = txtTituloTarefa.Text;
+        Tarefa.Descricao = txtDescricao.Text;
+        Tarefa.DataPrevisao = dpTaskDate.Date;
+        Tarefa.Criado = DateTime.Now;
+        Tarefa.Concluido = false;
+    }
 }
