@@ -3,7 +3,11 @@
     x:Class="Tasks.Views.CrudTaskPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Converter="clr-namespace:Tasks.Libraries.Converters"
     Title="CrudTaskPage">
+    <ContentPage.Resources>
+        <Converter:BoolTextDecorationStrikeThrough x:Key="BoolTextDecorationStrikeThrough" />
+    </ContentPage.Resources>
     <Grid>
         <BoxView
             HeightRequest="5"
@@ -19,16 +23,22 @@
                 MinimumHeightRequest="30"
                 Text="X" />
             <Border StrokeShape="RoundRectangle 10">
-                <Entry Placeholder="Título da Tarefa" />
+                <Entry x:Name="txtTituloTarefa" Placeholder="Título da Tarefa" />
             </Border>
             <Border StrokeShape="RoundRectangle 10">
-                <Editor HeightRequest="150" Placeholder="Descrição" />
+                <Editor
+                    x:Name="txtDescricao"
+                    HeightRequest="150"
+                    Placeholder="Descrição" />
             </Border>
             <Border StrokeShape="RoundRectangle 10">
                 <DatePicker x:Name="dpTaskDate" />
             </Border>
 
-            <StackLayout Orientation="Horizontal">
+            <StackLayout
+                HeightRequest="32"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
                 <Label Text="Etapas (subtarefas)" VerticalOptions="Center" />
                 <Button
                     x:Name="btnAddSubtask"
@@ -40,18 +50,31 @@
                     Text="+"
                     VerticalOptions="Center" />
             </StackLayout>
-
-            <Grid ColumnDefinitions="30, *, 30">
-                <CheckBox VerticalOptions="Center" />
-                <Label
-                    Grid.Column="1"
-                    Text="Etapa Teste"
-                    VerticalOptions="Center" />
-                <Label
-                    Grid.Column="2"
-                    Text="Lixo"
-                    VerticalOptions="Center" />
-            </Grid>
+            <ScrollView>
+                <StackLayout x:Name="slSubtarefas">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="30, *, 30">
+                                <CheckBox IsChecked="{Binding Concluido}" VerticalOptions="Center" />
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Nome}"
+                                    TextDecorations="{Binding Concluido, Converter={StaticResource BoolTextDecorationStrikeThrough}}"
+                                    VerticalOptions="Center" />
+                                <Image
+                                    x:Name="btnExcluirSubtarefa"
+                                    Grid.Column="2"
+                                    Source="trash.svg"
+                                    WidthRequest="25">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="btnExcluirSubtarefa_Click" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
         </VerticalStackLayout>
         <Button
             x:Name="btnSalvar"
