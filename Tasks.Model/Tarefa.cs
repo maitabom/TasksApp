@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Tasks.Model;
 
@@ -26,7 +27,7 @@ public class Tarefa : INotifyPropertyChanged
 
     public DateTime Criado { get; set; }
     public DateTime Atualizado { get; set; }
-    public List<Subtarefa> Subtarefas { get; set; } = new List<Subtarefa>();
+    public ObservableCollection<Subtarefa> Subtarefas { get; set; } = new ObservableCollection<Subtarefa>();
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
