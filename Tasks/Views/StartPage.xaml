@@ -3,8 +3,12 @@
     x:Class="Tasks.Views.StartPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Converter="clr-namespace:Tasks.Libraries.Converters"
     Title="StartPage"
     NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <Converter:BoolTextDecorationStrikeThrough x:Key="BoolTextDecorationStrikeThrough" />
+    </ContentPage.Resources>
     <Grid RowDefinitions="70, *">
 
         <Border
@@ -38,14 +42,21 @@
                         <CheckBox
                             x:Name="chkTarefaConcluida"
                             Grid.Column="0"
-                            HorizontalOptions="Center">
+                            HorizontalOptions="Center"
+                            IsChecked="{Binding Concluido}">
                             <CheckBox.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="chkTarefaConcluida_Tapped" />
                             </CheckBox.GestureRecognizers>
                         </CheckBox>
                         <StackLayout Grid.Column="1">
-                            <Label FontAttributes="Bold" Text="{Binding Name}" />
-                            <Label Text="{Binding DataPrevisao}" />
+                            <Label
+                                FontAttributes="Bold"
+                                Text="{Binding Name}"
+                                TextDecorations="{Binding Concluido, Converter={StaticResource BoolTextDecorationStrikeThrough}}" />
+                            <Label
+                                Text="{Binding DataPrevisao}"
+                                TextColor="{StaticResource Gray500}"
+                                TextDecorations="{Binding Concluido, Converter={StaticResource BoolTextDecorationStrikeThrough}}" />
                         </StackLayout>
                         <Image
                             x:Name="imgTrash"
