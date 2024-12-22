@@ -30,8 +30,18 @@ public class TarefaRepository : ITarefaRepository
 
     public void Delete(Tarefa tarefa)
     {
-        _context.Tarefas.Remove(tarefa);
-        _context.SaveChanges();
+        var pivot = Get(tarefa.Id);
+
+        if (pivot is not null)
+        {
+            foreach (var subtarefa in pivot.Subtarefas)
+            {
+                _context.Subtarefas.Remove(subtarefa);
+            }
+            
+            _context.Tarefas.Remove(tarefa);
+            _context.SaveChanges();
+        }
     }
 
     public Tarefa? Get(int id)
