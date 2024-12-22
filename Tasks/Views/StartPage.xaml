@@ -48,7 +48,10 @@
                                 <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="chkTarefaConcluida_Tapped" />
                             </CheckBox.GestureRecognizers>
                         </CheckBox>
-                        <StackLayout Grid.Column="1">
+                        <StackLayout x:Name="slNameDateTask" Grid.Column="1">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="slNameDateTask_Tapped" />
+                            </StackLayout.GestureRecognizers>
                             <Label
                                 FontAttributes="Bold"
                                 Text="{Binding Nome}"

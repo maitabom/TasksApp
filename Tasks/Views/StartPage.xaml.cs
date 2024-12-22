@@ -60,4 +60,14 @@ public partial class StartPage : ContentPage
             _repository.Update(task);
         }
     }
+
+    private void slNameDateTask_Tapped(object sender, TappedEventArgs e)
+    {
+        var task = (Tarefa?)e.Parameter;
+
+        if (task is not null)
+        {
+            Navigation.PushModalAsync(new CrudTaskPage(task));
+        }
+    }
 }

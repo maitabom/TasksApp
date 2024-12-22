@@ -17,6 +17,15 @@ public partial class CrudTaskPage : ContentPage
         BindableLayout.SetItemsSource(slSubtarefas, Tarefa.Subtarefas);
     }
 
+    public CrudTaskPage(Tarefa tarefa)
+    {
+        repository = new TarefaRepository();
+        Tarefa = repository.Get(tarefa.Id) ?? new Tarefa();
+
+        InitializeComponent();
+        LoadData();
+    }
+
     private void btnClose_Clicked(object sender, EventArgs e)
     {
         Navigation.PopModalAsync();
@@ -29,8 +38,8 @@ public partial class CrudTaskPage : ContentPage
         if(ValidationData())
         {
             SaveData();
-            Navigation.PopModalAsync();
             RefreshData();
+            Navigation.PopModalAsync();
         }
     }
 
@@ -58,6 +67,15 @@ public partial class CrudTaskPage : ContentPage
         {
             Tarefa.Subtarefas.Remove(marcado);
         }
+    }
+
+    private void LoadData()
+    {
+        txtTituloTarefa.Text = Tarefa.Nome;
+        txtDescricao.Text = Tarefa.Descricao;
+        dpTaskDate.Date = Tarefa.DataPrevisao;
+        
+        BindableLayout.SetItemsSource(slSubtarefas, Tarefa.Subtarefas);
     }
 
     private void GetFormData()
@@ -93,7 +111,14 @@ public partial class CrudTaskPage : ContentPage
 
     private void SaveData()
     {
-        repository.Insert(Tarefa);
+        if (Tarefa.Id == 0)
+        {
+            repository.Insert(Tarefa);
+        }
+        else
+        {
+            repository.Update(Tarefa);
+        }
     }
 
     private void RefreshData()
