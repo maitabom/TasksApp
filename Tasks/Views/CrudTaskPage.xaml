@@ -44,7 +44,7 @@
                 Text="A descrição da tarefa é obrigatória"
                 TextColor="Red" />
             <Border StrokeShape="RoundRectangle 10">
-                <DatePicker x:Name="dpTaskDate" />
+                <DatePicker x:Name="dpTaskDate" Format="dd/MM/yyyy" />
             </Border>
 
             <StackLayout
