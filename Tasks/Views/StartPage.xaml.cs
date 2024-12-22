@@ -53,11 +53,16 @@ public partial class StartPage : ContentPage
     private void chkTarefaConcluida_Tapped(object sender, TappedEventArgs e)
     {
         var task = (Tarefa?)e.Parameter;
+        var checkbox = (CheckBox)sender;
 
         if (task is not null)
         {
-            task.Concluido = ((CheckBox)sender).IsChecked;
+            if (DeviceInfo.Platform != DevicePlatform.WinUI)
+            {
+                checkbox.IsChecked = !checkbox.IsChecked;
+            }
             
+            task.Concluido = ((CheckBox)sender).IsChecked;
             _repository.Update(task);
         }
     }
