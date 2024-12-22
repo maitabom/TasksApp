@@ -51,7 +51,7 @@
                         <StackLayout Grid.Column="1">
                             <Label
                                 FontAttributes="Bold"
-                                Text="{Binding Name}"
+                                Text="{Binding Nome}"
                                 TextDecorations="{Binding Concluido, Converter={StaticResource BoolTextDecorationStrikeThrough}}" />
                             <Label
                                 Text="{Binding DataPrevisao}"

@@ -25,12 +25,24 @@
             <Border StrokeShape="RoundRectangle 10">
                 <Entry x:Name="txtTituloTarefa" Placeholder="Título da Tarefa" />
             </Border>
+            <Label
+                x:Name="lblErroTitulo"
+                Margin="0,-5,0,5"
+                IsVisible="False"
+                Text="O título da tarefa é obrigatório"
+                TextColor="Red" />
             <Border StrokeShape="RoundRectangle 10">
                 <Editor
                     x:Name="txtDescricao"
                     HeightRequest="150"
                     Placeholder="Descrição" />
             </Border>
+            <Label
+                x:Name="lblErroDescricao"
+                Margin="0,-5,0,5"
+                IsVisible="False"
+                Text="A descrição da tarefa é obrigatória"
+                TextColor="Red" />
             <Border StrokeShape="RoundRectangle 10">
                 <DatePicker x:Name="dpTaskDate" />
             </Border>

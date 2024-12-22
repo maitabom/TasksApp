@@ -1,14 +1,17 @@
 using Tasks.Model;
+using Tasks.Repositories;
 
 namespace Tasks.Views;
 
 public partial class CrudTaskPage : ContentPage
 {
+    private readonly ITarefaRepository repository;
     private Tarefa Tarefa { get; set; }
 
     public CrudTaskPage()
     {
         InitializeComponent();
+        repository = new TarefaRepository();
         Tarefa = new Tarefa();
 
         BindableLayout.SetItemsSource(slSubtarefas, Tarefa.Subtarefas);
@@ -21,7 +24,14 @@ public partial class CrudTaskPage : ContentPage
 
     private void btnSalvar_Clicked(object sender, EventArgs e)
     {
-        Navigation.PopModalAsync();
+        GetFormData();
+        
+        if(ValidationData())
+        {
+            SaveData();
+            Navigation.PopModalAsync();
+            RefreshData();
+        }
     }
 
     private async void btnAddSubtask_Clicked(object sender, EventArgs e)
@@ -30,7 +40,7 @@ public partial class CrudTaskPage : ContentPage
 
         if (!String.IsNullOrEmpty(stepName))
         {
-            Tarefa.Subtarefas.Add(new Subtarefa({ Nome = stepName, Concluido = false });
+            Tarefa.Subtarefas.Add(new Subtarefa { Nome = stepName, Concluido = false });
         }
     }
 
@@ -57,5 +67,43 @@ public partial class CrudTaskPage : ContentPage
         Tarefa.DataPrevisao = dpTaskDate.Date;
         Tarefa.Criado = DateTime.Now;
         Tarefa.Concluido = false;
+    }
+
+    private bool ValidationData()
+    {
+        bool valid = true;
+
+        lblErroTitulo.IsVisible = false;
+        lblErroDescricao.IsVisible = false;
+
+        if (String.IsNullOrWhiteSpace(Tarefa.Nome))
+        {
+            lblErroTitulo.IsVisible = true;
+            valid = false;
+        }
+
+        if (String.IsNullOrWhiteSpace(Tarefa.Descricao))
+        {
+            lblErroDescricao.IsVisible = true;
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    private void SaveData()
+    {
+        repository.Insert(Tarefa);
+    }
+
+    private void RefreshData()
+    {
+        var navigationPage = App.Current.MainPage as NavigationPage;
+
+        if (navigationPage is not null)
+        {
+            var startPage = (StartPage)navigationPage.CurrentPage;
+            startPage.LoadData();
+        }
     }
 }
