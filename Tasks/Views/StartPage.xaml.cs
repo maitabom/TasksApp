@@ -6,6 +6,7 @@ namespace Tasks.Views;
 public partial class StartPage : ContentPage
 {
     private ITarefaRepository _repository;
+    private IList<Tarefa> _tarefas;
 
     public StartPage()
     {
@@ -18,9 +19,9 @@ public partial class StartPage : ContentPage
 
     public void LoadData()
     {
-        var tasks = _repository.GetAll();
-        cvTasks.ItemsSource = tasks;
-        lblEmptyTasks.IsVisible = (tasks.Count == 0);
+        _tarefas = _repository.GetAll();
+        cvTasks.ItemsSource = _tarefas;
+        lblEmptyTasks.IsVisible = (_tarefas.Count == 0);
     }
 
     private void btnAdicionar_Clicked(object sender, EventArgs e)
@@ -69,5 +70,12 @@ public partial class StartPage : ContentPage
         {
             Navigation.PushModalAsync(new CrudTaskPage(task));
         }
+    }
+
+    private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        var chave = e.NewTextValue;
+
+        cvTasks.ItemsSource = _tarefas.Where(t => t.Nome.Contains(chave, StringComparison.InvariantCultureIgnoreCase)).ToList();
     }
 }

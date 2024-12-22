@@ -31,7 +31,8 @@
                     x:Name="txtBuscar"
                     HorizontalOptions="FillAndExpand"
                     Placeholder="Buscar..."
-                    PlaceholderColor="#A8A8A8" />
+                    PlaceholderColor="#A8A8A8"
+                    TextChanged="txtBuscar_TextChanged" />
             </StackLayout>
         </Border>
 
