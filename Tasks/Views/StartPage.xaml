@@ -58,7 +58,7 @@
                                 Text="{Binding Nome}"
                                 TextDecorations="{Binding Concluido, Converter={StaticResource BoolTextDecorationStrikeThrough}}" />
                             <Label
-                                Text="{Binding DataPrevisao}"
+                                Text="{Binding DataPrevisao, StringFormat='{0:dd/MM/yyyy}'}"
                                 TextColor="{StaticResource Gray500}"
                                 TextDecorations="{Binding Concluido, Converter={StaticResource BoolTextDecorationStrikeThrough}}" />
                         </StackLayout>
